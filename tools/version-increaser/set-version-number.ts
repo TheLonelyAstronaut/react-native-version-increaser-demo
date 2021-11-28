@@ -1,16 +1,20 @@
-import { osPath } from './config';
+import {FileConfig, osPath} from './config';
 import { readFileSync, writeFileSync } from 'fs';
 
-const updatePlatformVersion = async (sourceFilePath: string, versionNumber: string) => {
-    const fileData: Buffer = readFileSync(sourceFilePath);
+const updatePlatformVersion = async (config: FileConfig, versionNumber: string) => {
+    const fileData: Buffer = readFileSync(config.base);
+
+    const buildVersion = versionNumber.substring(0, versionNumber.lastIndexOf('.'));
+    const buildNumber = versionNumber.substring(versionNumber.lastIndexOf('.') + 1);
 
     const updatedFileData = fileData.toString()
-        .replace(searchPattern.buildNumber, (all, start, found, end) => `${start}${newBuildNumber}${end}`);
+        .replace(config.searchPaths.buildVersion, (all, start, found, end) => `${start}${buildVersion}${end}`)
+        .replace(config.searchPaths.buildNumber, (all, start, found, end) => `${start}${buildNumber}${end}`);
 
-    writeFileSync(sourceFilePath, updatedFileData);
+    writeFileSync(config.base, updatedFileData);
 }
 
 export const setVersionNumber = async (versionNumber: string) => {
-    updatePlatformVersion(osPath.ios.base, versionNumber).catch(console.error);
-    updatePlatformVersion(osPath.android.base, versionNumber).catch(console.error);
+    updatePlatformVersion(osPath.ios, versionNumber).catch(console.error);
+    updatePlatformVersion(osPath.android, versionNumber).catch(console.error);
 }

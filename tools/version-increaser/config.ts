@@ -2,12 +2,14 @@ import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { name } from '../../app.json';
 
+export type SearchPaths = {
+    buildVersion: RegExp,
+    buildNumber: RegExp
+}
+
 export type FileConfig = {
     base: string;
-    searchPaths: {
-        buildVersion: RegExp,
-        buildNumber: RegExp
-    }
+    searchPaths: SearchPaths;
 };
 
 export type Platforms = 'ios' | 'android';
