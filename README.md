@@ -1,2 +1,2 @@
-# react-native-version-increaser
-Semantic app version automatic increaser
+# react-native-version-increaser-demo
+Semantic app version increasing before building 
