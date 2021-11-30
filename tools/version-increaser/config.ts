@@ -1,10 +1,9 @@
 import { resolve } from 'path';
-import { existsSync } from 'fs';
 import { name } from '../../app.json';
 
 export type SearchPaths = {
     buildVersion: RegExp,
-    buildNumber: RegExp
+    buildNumber?: RegExp
 }
 
 export type BuildInfo = {
@@ -17,7 +16,7 @@ export type FileConfig = {
     searchPaths: SearchPaths;
 };
 
-export type Platforms = 'ios' | 'android';
+export type Platforms = 'ios' | 'android' | 'node';
 
 export const osPath: Record<Platforms, FileConfig> = {
     ios: {
@@ -32,6 +31,12 @@ export const osPath: Record<Platforms, FileConfig> = {
         searchPaths: {
             buildVersion: /(^\s*versionName ")(?<buildVersion>.*)("$)/gm,
             buildNumber: /(^\s*versionCode )(?<buildNumber>\d*)($)/gm,
+        }
+    },
+    node: {
+        base: resolve(process.cwd(), './package.json'),
+        searchPaths: {
+            buildVersion: /(^\s*"version": ")(?<buildVersion>.*)(")/gm,
         }
     }
 }
