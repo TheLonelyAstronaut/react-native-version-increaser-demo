@@ -7,6 +7,11 @@ export type SearchPaths = {
     buildNumber: RegExp
 }
 
+export type BuildInfo = {
+    buildVersion: string,
+    buildNumber: string
+}
+
 export type FileConfig = {
     base: string;
     searchPaths: SearchPaths;
@@ -29,4 +34,11 @@ export const osPath: Record<Platforms, FileConfig> = {
             buildNumber: /(^\s*versionCode )(?<buildNumber>\d*)($)/gm,
         }
     }
+}
+
+export const getBuildInfo = (version: string): BuildInfo => {
+    return {
+        buildVersion: version.substring(0, version.lastIndexOf('.')),
+        buildNumber: version.substring(version.lastIndexOf('.') + 1)
+    };
 }
