@@ -134,7 +134,7 @@ android {
         applicationId "com.versionincreaserdemo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
+        versionCode 19
         versionName "3.1"
     }
     splits {
