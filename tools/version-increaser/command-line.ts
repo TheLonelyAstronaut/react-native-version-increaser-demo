@@ -17,11 +17,5 @@ export const streamToString = async (stream: Readable | null): Promise<string> =
 
 export const execute = async (command: string): Promise<string> => {
     const { stdout, stderr } = await childProcess.exec(command);
-    const decoded = await streamToString(stdout ?? stderr);
-
-    if(stderr) {
-        console.error(decoded);
-    }
-
-    return decoded;
+    return await streamToString(stdout ?? stderr);
 }
