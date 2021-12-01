@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from "react-native";
 
 export const App = () => {
-  console.log('BREAKING CHANGE1234');
+  console.log('BREAKING CHANGE');
 
   return (
       <View>
