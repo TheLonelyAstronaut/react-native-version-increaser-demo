@@ -9,3 +9,5 @@ Setup tool with your CI/CD:
 5. Build your application!
 
 After step 4 new tag and release will be added to GitHub project page.
+
+A GitHub personal token must be created and set in the GH_TOKEN or GITHUB_TOKEN environment variable on your CI environment.
