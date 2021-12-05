@@ -18,7 +18,6 @@ workflows:
           inputs:
             - access_token: $BITRISE_PERSONAL_ACCESS_TOKEN
             - workflows: |-
-                upgrade-node
                 setup-android
                 setup-ios
   upgrade-node:
