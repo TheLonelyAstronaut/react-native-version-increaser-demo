@@ -18,8 +18,17 @@ workflows:
           inputs:
             - access_token: $BITRISE_PERSONAL_ACCESS_TOKEN
             - workflows: |-
+                upgrade-node
                 setup-android
                 setup-ios
+  upgrade-node:
+    steps:
+      - script:
+          title: 'Node upgrade'
+          inputs:
+            - content: |-
+                brew uninstall node
+                brew install node@16
   setup-ios:
     before_run:
       - clone-repo
