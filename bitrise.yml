@@ -12,7 +12,7 @@ workflows:
     steps:
       - git-clone: { }
 
-  build-live:
+  deploy:
     description: Workflow for Live builds
     steps:
       - build-router-start@0:
