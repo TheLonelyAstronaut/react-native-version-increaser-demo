@@ -54,6 +54,12 @@ workflows:
       - install-react-native@0:
           inputs:
             - version: 4.13.1
+      - script:
+          title: 'Node version'
+          inputs:
+            - content: |-
+                node -v
+                nvm
       - yarn@0:
           title: yarn install
           inputs:
