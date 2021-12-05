@@ -4,11 +4,10 @@ export const createNewRelease = async (): Promise<string> => {
     const result = await semanticRelease({
         branches: ['master'],
         repositoryUrl: 'https://github.com/TheLonelyAstronaut/react-native-version-increaser-demo.git',
-        dryRun: false,
-        ci: false
+        ci: Boolean(process.env.CI)
     }, {
         env: { ...(process.env as Record<string, any>) },
     });
 
-    return result ? result.nextRelease.version : '';
+    return result ? result.nextRelease.version : '0.0.1';
 }
