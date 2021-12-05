@@ -49,17 +49,13 @@ workflows:
           inputs:
             - gradlew_path: "$ANDROID_PROJECT_LOCATION/gradlew"
   install-js-dependencies:
+    before_run:
+      - upgrade-node
     description: setup for JS by setting up NPM + downloading NPM dependencies
     steps:
       - install-react-native@0:
           inputs:
             - version: 4.13.1
-      - script:
-          title: 'Node version'
-          inputs:
-            - content: |-
-                node -v
-                nvm
       - yarn@0:
           title: yarn install
           inputs:
