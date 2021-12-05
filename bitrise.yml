@@ -27,8 +27,9 @@ workflows:
           title: 'Node upgrade'
           inputs:
             - content: |-
-                brew uninstall node
-                brew install node@16
+                #!/bin/bash
+                set -ex
+                brew reinstall node@16
   setup-ios:
     before_run:
       - clone-repo
