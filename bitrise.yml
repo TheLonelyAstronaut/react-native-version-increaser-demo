@@ -16,6 +16,7 @@ workflows:
     steps:
       - build-router-start@0:
           inputs:
+            - access_token: $BITRISE_PERSONAL_ACCESS_TOKEN
             - workflows: |-
                 setup-android
                 setup-ios
